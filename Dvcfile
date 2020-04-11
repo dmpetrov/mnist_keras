@@ -1,0 +1,11 @@
+md5: f7e06f3c836bed3e7ae7cd04190cb081
+cmd: python train.py
+deps:
+- md5: 7cb95ab3d127b66a121f94a7bf7c768b
+  path: train.py
+outs:
+- md5: 4dfa7ffe060d8976bdb16df34e1c93bd
+  path: logs.csv
+  cache: true
+  metric: false
+  persist: false
