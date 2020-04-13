@@ -24,6 +24,8 @@ jobs:
           test -f requirements.txt && pip3 install -r requirements.txt
           python -V
           pip list | grep tensorflow
+          echo "============= TRAIN ============="
+          python train.py
           echo "============= RUN CML ============="
           dvc_cml_run
 
