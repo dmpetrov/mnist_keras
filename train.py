@@ -1,6 +1,9 @@
 import tensorflow as tf
 import datetime
 import yaml
+import json
+import time
+from decimal import Decimal
 
 params = yaml.safe_load(open('params.yaml'))
 epochs = params['epochs']
@@ -24,15 +27,26 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+log_dir = "logs/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
 csv_logger = tf.keras.callbacks.CSVLogger(log_file)
 
-model.fit(x=x_train,
-          y=y_train,
-          epochs=epochs,
-          validation_data=(x_test, y_test),
-          callbacks=[csv_logger])
-          #callbacks=[tensorboard_callback])
+start_real = time.time()
+start_process = time.process_time()
+history = model.fit(x=x_train,
+                    y=y_train,
+                    epochs=epochs,
+                    validation_data=(x_test, y_test),
+                    callbacks=[csv_logger, tensorboard_callback])
+end_real = time.time()
+end_process = time.process_time()
+
+with open("summary.json", "w") as fd:
+    json.dump({
+        "accuracy": float(history.history["accuracy"][-1]),
+        "loss": float(history.history["loss"][-1]),
+        "time_real" : end_real - start_real,
+        "time_process": end_process - start_process
+    }, fd)
 
