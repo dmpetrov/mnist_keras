@@ -18,8 +18,8 @@ jobs:
           DVC_PULL: ""
         run: |
           apt-get update
-          apt-get install -y python-pip
-          pip install --upgrade pip
-          pip install -r requirements.txt
+          apt-get install -y python-pip3
+          pip3 install --upgrade pip
+          pip3 install -r requirements.txt
           dvc_cml_run
 
