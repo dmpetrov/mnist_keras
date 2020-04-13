@@ -22,5 +22,8 @@ jobs:
           alias python=python3
           pip3 install --upgrade pip
           test -f requirements.txt && pip3 install -r requirements.txt
+          python -V
+          pip list | grep tensorflow
+          echo "============= RUN CML ============="
           dvc_cml_run
 
