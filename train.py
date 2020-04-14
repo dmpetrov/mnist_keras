@@ -3,7 +3,6 @@ import datetime
 import yaml
 import json
 import time
-from decimal import Decimal
 
 params = yaml.safe_load(open('params.yaml'))
 epochs = params['epochs']
