@@ -18,19 +18,19 @@ jobs:
           DVC_PULL: ""
         run: |
           apt-get update
+          sudo apt purge python2.x-minimal
           apt-get install -y python3 python3-pip
           pip3 install --upgrade pip
-          alias python=/usr/bin/python3.6
-          echo "alias python=/usr/bin/python3.6" >> ~/.bashrc
-          rm -rf /usr/bin/python2 /usr/bin/python
-          ln -s /usr/bin/python3.6 /usr/bin/python2
-          ln -s /usr/bin/python3.6 /usr/bin/python
-          test -f requirements.txt && pip3 install -r requirements.txt
+          #alias python=/usr/bin/python3.6
+          #echo "alias python=/usr/bin/python3.6" >> ~/.bashrc
+          #rm -rf /usr/bin/python2 /usr/bin/python
+          #ln -s /usr/bin/python3.6 /usr/bin/python2
+          #ln -s /usr/bin/python3.6 /usr/bin/python
           python -V
-          pip list | grep tensorflow
           #echo "============= TRAIN ============="
           #python train.py
           dvc repro version.dvc
+          test -f requirements.txt && pip3 install -r requirements.txt
           echo "============= RUN CML ============="
           dvc_cml_run
 
