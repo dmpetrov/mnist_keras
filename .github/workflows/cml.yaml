@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   dvc:
     runs-on: ubuntu-latest
-    container: docker://dvcorg/dvc-cml-dev:latest
+    container: docker://dvcorg/dvc-cml-py3:latest
 
     steps:
       - uses: actions/checkout@v2
@@ -17,6 +17,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DVC_PULL: ""
         run: |
+          apt-get install -y --no-install-recommends --fix-missing git python3-setuptools python3-dev
+          git clone https://github.com/iterative/dvc/
+          cd dvc && git checkout 128fa7f && pip install -U -e .[all,tests]
+          cd ..
           dvc version
           test -f requirements.txt && pip3 install -r requirements.txt
           echo "============= RUN CML ============="
