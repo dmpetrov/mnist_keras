@@ -15,7 +15,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DVC_PULL: ""
+          DVC_PULL: "-"
         run: |
           apt-get install -y --no-install-recommends --fix-missing git python3-setuptools python3-dev
           git clone https://github.com/iterative/dvc/
