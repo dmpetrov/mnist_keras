@@ -1,6 +1,6 @@
 name: CML
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   dvc:
@@ -25,4 +25,23 @@ jobs:
           test -f requirements.txt && pip3 install -r requirements.txt
           echo "============= RUN CML ============="
           dvc_cml_run
+
+#      - name: "CML report"
+#        env:
+#          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          DVC_PULL: "-"
+#        run: |
+#          npm install dvc
+#          dvc pull
+#          dvc repro
+#          echo "# CML report" >> report.md
+#          dvc metrics diff --show-json | cml-metrics >> report.md
+#          dvc params diff --show-json | cml-params >> report.md
+#          dvc plot diff --show-json | cml-plots >> report.md
+#          dvc diff --show-json | cml-files >> report.md
+#          dvc push
+#          cml-send-report report.md
+
 

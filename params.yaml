@@ -1,5 +1,5 @@
 
-epochs: 6
+epochs: 7
 
 log_file: logs.csv
 
