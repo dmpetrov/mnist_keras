@@ -1,24 +1,24 @@
-md5: e035debf239914cd18bcd37c339f20ad
+md5: 52276f6da64af57fa7abbaf14a0a8c51
 cmd: python train.py
 deps:
 - md5: 7fa76d2cdab088f26cf96a9e7e1725c4
   path: train.py
 - path: params.yaml
   params:
-    epochs: 4
+    epochs: 5
     log_file: logs.csv
 outs:
-- md5: 4f34a78c2ba24687cb33385d3600e2f1
+- md5: 2384157f7ad1d48838d83255ec95332b
   path: logs.csv
   cache: false
   metric: false
   persist: false
-- md5: afd2cd94f0c72b93004f9f015308acc2.dir
+- md5: 22134235a921fec982fc763479085881.dir
   path: logs
   cache: true
   metric: false
   persist: false
-- md5: 0719c5bd76ee42c276f3da871996ed93
+- md5: c87932e57063f19b5978c6fd430a12c8
   path: summary.json
   cache: false
   metric: true
